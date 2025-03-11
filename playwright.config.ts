@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  reporter: [['junit', { outputFile: 'results.xml' }]],
+  reporter: [['junit', { outputFile: 'results.xml' }], ["allure-playwright"]],
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,

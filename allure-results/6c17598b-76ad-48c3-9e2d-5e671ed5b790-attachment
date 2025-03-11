@@ -1,0 +1,67 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Login to SauceDemo using POM
+- Location: C:\Users\Arnaud\Documents\Log\projet-Playwright\tests\login.spec.ts:6:5
+
+# Error details
+
+```
+Error: page.fill: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('#user-name')
+
+    at LoginPage.enterUsername (C:\Users\Arnaud\Documents\Log\projet-Playwright\pages\LoginPage.ts:18:21)
+    at LoginPage.login (C:\Users\Arnaud\Documents\Log\projet-Playwright\pages\LoginPage.ts:30:16)
+    at C:\Users\Arnaud\Documents\Log\projet-Playwright\tests\login.spec.ts:13:19
+```
+
+# Test source
+
+```ts
+   1 | import { Page, expect } from '@playwright/test';
+   2 |
+   3 | export class LoginPage {
+   4 |   readonly page: Page;
+   5 |   readonly usernameInput = '#user-name';
+   6 |   readonly passwordInput = '#password';
+   7 |   readonly loginButton = '#login-button';
+   8 |
+   9 |   constructor(page: Page) {
+  10 |     this.page = page;
+  11 |   }
+  12 |
+  13 |   async gotoLoginPage() {
+  14 |     await this.page.goto('https://www.saucedemo.com/');
+  15 |   }
+  16 |
+  17 |   async enterUsername(username: string) {
+> 18 |     await this.page.fill(this.usernameInput, username);
+     |                     ^ Error: page.fill: Target page, context or browser has been closed
+  19 |   }
+  20 |
+  21 |   async enterPassword(password: string) {
+  22 |     await this.page.fill(this.passwordInput, password);
+  23 |   }
+  24 |
+  25 |   async clickLoginButton() {
+  26 |     await this.page.click(this.loginButton);
+  27 |   }
+  28 |
+  29 |   async login(username: string, password: string) {
+  30 |     await this.enterUsername(username);
+  31 |     await this.enterPassword(password);
+  32 |     await this.clickLoginButton();
+  33 |   }
+  34 |
+  35 |   async verifySuccessfulLogin() {
+  36 |     await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  37 |   }
+  38 | }
+  39 |
+```

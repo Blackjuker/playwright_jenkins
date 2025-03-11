@@ -12,47 +12,23 @@ pipeline{
                 sh 'npm ci'
             }
         }
-
-/*
-        stage('Run Playwright Tests') {
-            steps {
-                script {
-                    sh 'npx playwright test --trace on' 
-                }
-            }
-        }
-/
-
-/
-        stage('Generate Report') {
-            steps {
-                script {
-                    sh 'npx playwright test --reporter=html'
-                    sh 'npx playwright show-report' 
-                }
-            }
-        }
-*/
         stage('Generate Report Junit') {
             steps {
                 script {
-                    //sh 'npx playwright test'
-                   // sh 'npx playwright test --reporter=junit --output=./results.xml'
-                   // sh 'npx playwright test --reporter=junit --output=test-results.xml'
-                   // sh 'npx playwright test --reporter=junit --output=test-results'
-                   // sh 'npx playwright test --reporter=junit --output=test-results'
                     sh 'npx playwright test '
                 }
             }
         }
 
-
+        post {
+                always {
+                    allure includeProperties:
+                     false,
+                     jdk: '',
+                     results: [[path: 'allure-results']]
+                }
+            }
 
     }
-        post {
-
-            always {
-                junit '**/results.xml' 
-            }
-        } 
+       
 }

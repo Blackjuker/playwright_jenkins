@@ -1,68 +1,88 @@
-<testsuites id="" name="" tests="12" failures="1" skipped="0" errors="0" time="43.563759">
-<testsuite name="example.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="chromium" tests="2" failures="0" skipped="0" time="4.532" errors="0">
-<testcase name="has title" classname="example.spec.ts" time="1.859">
+<testsuites id="" name="" tests="12" failures="2" skipped="0" errors="0" time="46.503454">
+<testsuite name="example.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.859" errors="0">
+<testcase name="has title" classname="example.spec.ts" time="5.159">
 </testcase>
-<testcase name="get started link" classname="example.spec.ts" time="2.673">
-</testcase>
-</testsuite>
-<testsuite name="inventory.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.7" errors="0">
-<testcase name="Add product to cart" classname="inventory.spec.ts" time="2.7">
+<testcase name="get started link" classname="example.spec.ts" time="5.7">
 </testcase>
 </testsuite>
-<testsuite name="login.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.885" errors="0">
-<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="1.885">
+<testsuite name="inventory.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.502" errors="0">
+<testcase name="Add product to cart" classname="inventory.spec.ts" time="2.502">
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="firefox" tests="2" failures="0" skipped="0" time="16.536" errors="0">
-<testcase name="has title" classname="example.spec.ts" time="8.045">
-</testcase>
-<testcase name="get started link" classname="example.spec.ts" time="8.491">
+<testsuite name="login.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.825" errors="0">
+<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="1.825">
 </testcase>
 </testsuite>
-<testsuite name="inventory.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="firefox" tests="1" failures="0" skipped="0" time="4.247" errors="0">
-<testcase name="Add product to cart" classname="inventory.spec.ts" time="4.247">
+<testsuite name="example.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="firefox" tests="2" failures="0" skipped="0" time="16.104" errors="0">
+<testcase name="has title" classname="example.spec.ts" time="7.829">
+</testcase>
+<testcase name="get started link" classname="example.spec.ts" time="8.275">
 </testcase>
 </testsuite>
-<testsuite name="login.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="firefox" tests="1" failures="0" skipped="0" time="3.715" errors="0">
-<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="3.715">
+<testsuite name="inventory.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="firefox" tests="1" failures="0" skipped="0" time="5.402" errors="0">
+<testcase name="Add product to cart" classname="inventory.spec.ts" time="5.402">
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="webkit" tests="2" failures="1" skipped="0" time="6.392" errors="0">
-<testcase name="has title" classname="example.spec.ts" time="2.571">
+<testsuite name="login.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="firefox" tests="1" failures="0" skipped="0" time="4.679" errors="0">
+<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="4.679">
 </testcase>
-<testcase name="get started link" classname="example.spec.ts" time="3.821">
-<failure message="example.spec.ts:10:5 get started link" type="FAILURE">
-<![CDATA[  [webkit] › example.spec.ts:10:5 › get started link ───────────────────────────────────────────────
+</testsuite>
+<testsuite name="example.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="webkit" tests="2" failures="1" skipped="0" time="5.904" errors="0">
+<testcase name="has title" classname="example.spec.ts" time="2.395">
+<failure message="example.spec.ts:3:5 has title" type="FAILURE">
+<![CDATA[  [webkit] › example.spec.ts:3:5 › has title ───────────────────────────────────────────────────────
 
-    Error: expect(locator).toBeVisible()
-
-    Locator: getByRole('heading', { name: 'Installation' })
-    Expected: visible
-    Received: <element(s) not found>
+    Error: page.goto: Target page, context or browser has been closed
     Call log:
-      - expect.toBeVisible with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'Installation' })
+      - navigating to "https://playwright.dev/", waiting until "load"
 
 
-      15 |
-      16 |   // Expects page to have a heading with the name of Installation.
-    > 17 |   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-         |                                                                     ^
-      18 | });
-      19 |
-        at C:\Users\Arnaud\Documents\Log\projet-Playwright\tests\example.spec.ts:17:69
+      2 |
+      3 | test('has title', async ({ page }) => {
+    > 4 |   await page.goto('https://playwright.dev/');
+        |              ^
+      5 |
+      6 |   // Expect a title "to contain" a substring.
+      7 |   await expect(page).toHaveTitle(/Playwright/);
+        at C:\Users\Arnaud\Documents\Log\projet-Playwright\tests\example.spec.ts:4:14
 
     Error: browserContext._wrapApiCall: Target page, context or browser has been closed
 ]]>
 </failure>
 </testcase>
-</testsuite>
-<testsuite name="inventory.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="webkit" tests="1" failures="0" skipped="0" time="2.625" errors="0">
-<testcase name="Add product to cart" classname="inventory.spec.ts" time="2.625">
+<testcase name="get started link" classname="example.spec.ts" time="3.509">
 </testcase>
 </testsuite>
-<testsuite name="login.spec.ts" timestamp="2025-03-11T12:40:51.462Z" hostname="webkit" tests="1" failures="0" skipped="0" time="2.134" errors="0">
-<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="2.134">
+<testsuite name="inventory.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="webkit" tests="1" failures="0" skipped="0" time="2.594" errors="0">
+<testcase name="Add product to cart" classname="inventory.spec.ts" time="2.594">
+</testcase>
+</testsuite>
+<testsuite name="login.spec.ts" timestamp="2025-03-11T13:15:24.016Z" hostname="webkit" tests="1" failures="1" skipped="0" time="1.37" errors="0">
+<testcase name="Login to SauceDemo using POM" classname="login.spec.ts" time="1.37">
+<failure message="login.spec.ts:6:5 Login to SauceDemo using POM" type="FAILURE">
+<![CDATA[  [webkit] › login.spec.ts:6:5 › Login to SauceDemo using POM ──────────────────────────────────────
+
+    Error: page.fill: Target page, context or browser has been closed
+    Call log:
+      - waiting for locator('#user-name')
+
+
+       at ..\pages\LoginPage.ts:18
+
+      16 |
+      17 |   async enterUsername(username: string) {
+    > 18 |     await this.page.fill(this.usernameInput, username);
+         |                     ^
+      19 |   }
+      20 |
+      21 |   async enterPassword(password: string) {
+        at LoginPage.enterUsername (C:\Users\Arnaud\Documents\Log\projet-Playwright\pages\LoginPage.ts:18:21)
+        at LoginPage.login (C:\Users\Arnaud\Documents\Log\projet-Playwright\pages\LoginPage.ts:30:16)
+        at C:\Users\Arnaud\Documents\Log\projet-Playwright\tests\login.spec.ts:13:19
+
+    Error: browserContext._wrapApiCall: Target page, context or browser has been closed
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
