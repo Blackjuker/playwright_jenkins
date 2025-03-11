@@ -1,35 +1,33 @@
-pipeline{
+pipeline {
     agent {
         docker {
-           image 'mcr.microsoft.com/playwright:v1.51.0-noble'
+            image 'mcr.microsoft.com/playwright:v1.51.0-noble'
         }
     }
 
-        stages {
-
+    stages {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
+                sh 'npm install -g allure-commandline --save-dev'
             }
         }
-        stage('execute junit') {
+
+        stage('Execute Playwright Tests') {
             steps {
                 script {
-                    sh 'npx playwright test '
+                    sh 'npx playwright test'
                 }
             }
         }
-
-       
-
     }
-     post {
-                always {
-                    allure includeProperties:
-                     false,
-                     jdk: '',
-                     results: [[path: './allure-results']]
-                }
+
+    post {
+        always {
+            script {
+                sh 'allure generate allure-results --clean -o allure-report'
             }
-       
+            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+        }
+    }
 }
