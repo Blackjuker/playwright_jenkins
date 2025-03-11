@@ -13,44 +13,29 @@ pipeline {
             }
         }
 
-        // stage('Install Allure') {
-        //     steps {
-        //         sh '''
-        //             apt-get update && apt-get install -y wget unzip
-        //             wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz
-        //             tar -zxvf allure-2.33.0.tgz -C /opt/
-        //             ln -s /opt/allure-2.33.0/bin/allure /usr/bin/allure
-        //         '''
-        //     }
-        // }
+        stage('Install Allure') {
+            steps {
+                sh '''
+                    apt-get update && apt-get install -y wget unzip
+                    wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz
+                    tar -zxvf allure-2.33.0.tgz -C /opt/
+                    ln -s /opt/allure-2.33.0/bin/allure /usr/bin/allure
+                '''
+            }
+        }
 
-        // stage('Execute Tests') {
-        //     steps {
-        //         script {
-        //             sh 'npx playwright test'
-        //         }
-        //     }
-        // }
+        stage('Execute Tests') {
+            steps {
+                script {
+                    sh 'npx playwright test'
+                }
+            }
+        }
     }
 
-    // post {
-    //     always {
-    //         allure includeProperties: false, jdk: '', results: [[path: 'allure-results/*.*']]
-    //         //archiveArtifacts artifacts:'allure-results/*.*'
-    //     }
-    // }
-     post {                
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                // success { allure([
-                //     includeProperties: false,
-                //     jdk: '',
-                //     properties: [],
-                //     reportBuildPolicy: 'ALWAYS',
-                //     results: [[path: 'target/allure-results']]
-                    
-                // ])
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-            }
-         
+    post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
+    }
 }
