@@ -33,10 +33,22 @@ pipeline {
         // }
     }
 
-    post {
-        always {
-            allure includeProperties: false, jdk: '', results: [[path: 'allure-results/*.*']]
-            //archiveArtifacts artifacts:'allure-results/*.*'
-        }
-    }
+    // post {
+    //     always {
+    //         allure includeProperties: false, jdk: '', results: [[path: 'allure-results/*.*']]
+    //         //archiveArtifacts artifacts:'allure-results/*.*'
+    //     }
+    // }
+     post {                
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success { allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+                ])
+            }
+         }
 }
