@@ -12,7 +12,7 @@ pipeline{
                 sh 'npm ci'
             }
         }
-        stage('Generate Report Junit') {
+        stage('execute junit') {
             steps {
                 script {
                     sh 'npx playwright test '
