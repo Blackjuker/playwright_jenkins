@@ -20,7 +20,10 @@ pipeline{
             }
         }
 
-        post {
+       
+
+    }
+     post {
                 always {
                     allure includeProperties:
                      false,
@@ -28,7 +31,5 @@ pipeline{
                      results: [[path: 'allure-results']]
                 }
             }
-
-    }
        
 }
